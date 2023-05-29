@@ -1,17 +1,14 @@
 <?php
 session_start();
 include 'connection.php';
-$hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
+$adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
 
-    if ($hasLogin){
+    if (empty($adminLogin)){
       
-        $_SESSION['id'] = $_SESSION['account'];
+        header("Location: login.php");
     
     }
-    else
-    {
-        $_SESSION['id'] = 0;
-    }
+    
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,16 +1,12 @@
 <?php
 session_start();
 include 'connection.php';
-$hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
+$adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
 
-    if ($hasLogin){
+    if (empty($adminLogin)){
       
-        $_SESSION['id'] = $_SESSION['account'];
+        header("Location: login.php");
     
-    }
-    else
-    {
-        $_SESSION['id'] = 0;
     }
 ?>
 <!DOCTYPE html>
@@ -83,7 +79,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                         echo "<td>
                                                 <div class='row'>
                                                     <div class='col p-1'>
-                                                        <form action = 'storeDelete.php' method = 'POST'> 
+                                                        <form action = 'productDelete.php' method = 'POST'> 
                                                             <button class = 'btn btn-danger'>Delete</button> 
                                                             <input type = 'hidden' name = 'id' value = '".$row['ID']."'>
                                                         </form>

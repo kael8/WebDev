@@ -24,6 +24,12 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 <a href="settings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a>
                                 </div>';
                         }
+                        else if($_SESSION['admin'])
+                        {
+                            echo '<div class="col-md-2 col-sm-6">
+                                <a href="adminSettings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a>
+                                </div>';
+                        }
                     ?>
                     <div class="col-md-2 col-sm-6">
                         <a href="shoplist.php"><h6 class="btn p-0" style="color: black;">Store</h6></a>
@@ -71,6 +77,10 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 {
                                     echo '<li><a class="dropdown-item" href="logoutpro.php">Sign out</a></li>';
                                 }
+                                else if($_SESSION['admin'])
+                                {
+                                    echo '<li><a class="dropdown-item" href="logoutpro.php">Sign out</a></li>';
+                                }
                                 else
                                 {
                                     echo '<li><a class="dropdown-item" href="login.php">Sign in</a></li>';
@@ -109,10 +119,15 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                     {
                                         echo "<li><p class='dropdown-item'>Pending</p></li>";
                                     }
+                                    
                                     else
                                     {
                                         echo "<li><a class='dropdown-item' href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a></li>";
                                     }
+                                }
+                                else if($_SESSION['admin'])
+                                {
+                                    echo "<li><a class='dropdown-item' href='manage.php'>Manage Site</a></li>";
                                 }
                                 else
                                 {
@@ -146,7 +161,11 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                             <?php
                                 if($hasLogin)
                                 {
-                                echo '<a href="settings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a><br>';
+                                    echo '<a href="settings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a><br>';
+                                }
+                                else if($_SESSION['admin'])
+                                {
+                                    echo '<a href="adminSettings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a><br>';
                                 }
                             ?>
                             
@@ -183,6 +202,10 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                     echo '<a href="logoutpro.php"><h6 class="btn p-0" style="color: black;">Sign out</h6></a>';
                                 }
                                 else if($id)
+                                {
+                                    echo '<a href="logoutpro.php"><h6 class="btn p-0" style="color: black;">Sign out</h6></a>';
+                                }
+                                else if($_SESSION['admin'])
                                 {
                                     echo '<a href="logoutpro.php"><h6 class="btn p-0" style="color: black;">Sign out</h6></a>';
                                 }
@@ -225,6 +248,10 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                         echo "<a href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a>";
                                     }
                                     
+                                }
+                                else if($_SESSION['admin'])
+                                {
+                                    echo "<a href='manage.php'><h6 class='btn p-0' style='color: black;'>Manage Site</h6></a>";
                                 }
                                 else
                                 {

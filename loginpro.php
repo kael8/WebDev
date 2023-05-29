@@ -9,17 +9,29 @@ if(isset($_POST['email']) && isset($_POST['pass']))
     
     $sql = "SELECT * FROM accounts WHERE Email = '$email' AND Password = '$pass'";
     $result = mysqli_query($conn, $sql);
-    foreach($result as $row)
+    if($result)
     {
-        $id = $row['ID'];
-        if(mysqli_num_rows($result) > 0)
+        foreach($result as $row)
         {
-            $_SESSION['account'] = $id;
-            echo "1";
+            $id = $row['ID'];
+            if(mysqli_num_rows($result) > 0)
+            {
+                $_SESSION['account'] = $id;
+                echo "1";
+                return false;
+            }
+            else
+            {
+                echo "2";
+            }
         }
-        else
+        $sql = "SELECT * FROM admin WHERE Email = '$email' AND Password = '$pass'";
+        $result = mysqli_query($conn, $sql);
+        if($result)
         {
-            echo "2";
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['admin'] = $row['ID'];
+            echo "1";
         }
     }
     
