@@ -65,11 +65,25 @@ font{
                                 <div class="container">
                                           <div class="row">                             
                                     <?php
-                                      // Assuming $results is an array of data to be displayed in the table
 
-                                    // Fetch data from the database
-                                    if(isset($_GET['cat']) && !empty($_GET['cat'])) {
+                                    if(isset($_GET['cat']))
+                                    {
                                         $cat = $_GET['cat'];
+                                    } 
+                                    if(!isset($_GET['cat']))
+                                    {
+                                        $sql = "SELECT CategoryName
+                                                FROM category
+                                                LIMIT 1";
+                                      
+                                        $results = mysqli_query($conn, $sql);
+                                        foreach($results as $rows) {
+                                            $cat = $rows['CategoryName'];
+                                        }
+                                    }
+                                    // Fetch data from the database
+                                    if($cat) {
+                                        
                                         $sql = "SELECT Item, ImageLocation, Price, ID 
                                                 FROM product
                                                 WHERE Category = '$cat'";
@@ -89,7 +103,7 @@ font{
                                                 $price = $rows['Price'];
                                                 $id = $rows['ID'];
                                                 echo '<a href="productview.php?id=' . $id . '" style="text-decoration:none; color: black;">';
-                                                echo '<img src="' . $imgSrc . '" alt="' . $item . '" style="width: 100%; height: 200px;">';
+                                                echo '<img src="' . $imgSrc . '" alt="' . $item . '" style="width: 100%; height: 200px; object-fit: cover;">';
                                                 echo '<p>' . $item . '<br><font>₱' . $price . '</font></p>';
 
                                                 echo '</a>';
@@ -98,7 +112,8 @@ font{
                                                 echo '</div>';
                                               }
                                               
-                                            }
+                                    }
+
                                             
                                                                  
                                       

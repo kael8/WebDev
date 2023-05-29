@@ -172,7 +172,7 @@ font{
             $imgSrc = $rows['ImageLocation']; // Assuming the image source is stored in 'Latitude' column
             $id = $rows['ID'];
             echo '<a href="productview.php?id=' . $id . '" style="text-decoration:none; color: black;">';
-            echo '<img src="' . $imgSrc . '" alt="' . $item . '" style="width: 100%; height: 200px;">';
+            echo '<img src="' . $imgSrc . '" alt="' . $item . '" style="width: 100%; height: 200px; object-fit: cover;">';
             echo '<p>' . $item . '<br><font>₱' . $price . '</font></p>';
             echo '</a>';
             echo '</center>';

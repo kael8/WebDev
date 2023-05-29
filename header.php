@@ -95,7 +95,24 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 }
                                 else if($id)
                                 {
-                                    echo "<li><a class='dropdown-item' href='shopreg.php'>Add Store</a></li>";
+                                    $rid = 0;
+                                    $sql = "SELECT ID
+                                    FROM request
+                                    WHERE OwnerID = '$id'";
+                                    $result = mysqli_query($conn, $sql);
+                                    while($row = mysqli_fetch_array($result)) 
+                                    {
+                                        $rid = $row['ID'];
+                                    }
+                                    
+                                    if($rid != 0)
+                                    {
+                                        echo "<li><p class='dropdown-item'>Pending</p></li>";
+                                    }
+                                    else
+                                    {
+                                        echo "<li><a class='dropdown-item' href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a></li>";
+                                    }
                                 }
                                 else
                                 {
@@ -190,7 +207,24 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 }
                                 else if($id)
                                 {
-                                    echo "<a href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a>";
+                                    $sql = "SELECT ID
+                                    FROM request
+                                    WHERE OwnerID = '$id'";
+                                    $result = mysqli_query($conn, $sql);
+                                    while($row = mysqli_fetch_array($result)) 
+                                    {
+                                        $rid = $row['ID'];
+                                    }
+                                 
+                                    if($rid)
+                                    {
+                                        echo "<p>Pending</p>";
+                                    }
+                                    else
+                                    {
+                                        echo "<a href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a>";
+                                    }
+                                    
                                 }
                                 else
                                 {

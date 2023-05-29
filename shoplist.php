@@ -63,7 +63,7 @@ font{
           $storeLocation = $rows['StoreLocation'];
           $id = $rows['sid'];
           echo '<a href="shopfeed.php?id=' . $id . '" style="text-decoration:none; color: black;">';
-          echo '<img src="' . $imgSrc . '" alt="' . $storeName . '" style="width: 100%; height: 200px;">';
+          echo '<img src="' . $imgSrc . '" alt="' . $storeName . '" style="width: 100%; height: 200px; object-fit: cover;">';
           echo '<p>' . $storeName . '</p>';
           echo '</a>';
 

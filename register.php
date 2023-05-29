@@ -153,7 +153,20 @@ $hasLogin = (isset($_SESSION['email'])?$_SESSION['email']:0);
             
         }
     });
-    
+    $('#email').on("input", function() {
+            var email = $('#email').val();
+            if (email.includes('@') && email.includes('.')) {
+                
+                    $('#memail').css('color', 'green');
+                    $('#memail').html('Valid Email');
+                    
+                
+            } else {
+                $('#memail').css('color', 'red');
+                $('#memail').html('Invalid Email');
+                $("#btnsubmit").attr("disabled", true);
+            }
+        });
     $("#btnsubmit").click(function(e){
         e.preventDefault();
         var pass = $("#pass").val();

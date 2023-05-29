@@ -19,7 +19,10 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
         <title>Welcome!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</head>
     
     
     <style>
@@ -49,10 +52,10 @@ font{
         <?php include 'header.php'; ?>
        
         
-            
+            <div class="container">
         <div class = "row p-4">
                     <div class="o-hidden border-0 shadow-lg col-lg-12 text-dark" style="border-radius: 20px;">
-                        <div class="row">
+                        <div class="row p-3">
                           
                           
                               <?php 
@@ -73,8 +76,12 @@ font{
                                     $ownerid = $row['OwnerID'];
                                     $storeid = $row['ID'];
                                     $storename = $row['StoreName'];
-                                    echo "<div class='col-md-6 col-sm-12 p-5' style='display: flex; justify-content: center; align-items: center;'> <img src='$image' style='height: 100%; width: 100%; border: 1px solid black;'></div>";
-                                    echo "<div class='col-md-6 col-sm-12 text-dark p-5'>";
+                                    echo "<div class='col-md-6 col-sm-12' style='display: flex; justify-content: center; align-items: center;'> <a href='#' style='height: 400px; width: 100%;' class='ratio ratio-1x1'data-bs-toggle='modal' data-bs-target='#myModal'>
+                                    
+                                        <img src='$image' style='border: 1px solid black; object-fit: cover;'>
+                                  
+                                </a></div>";
+                                    echo "<div class='col-md-6 col-sm-12 text-dark'>";
                                     if ($ownerid == $_SESSION['id']){
                                         echo '<i class="fas fa-cog p-1" style="height: 20px; width: 20px; float: right;" onclick = "settings('.$sid.')"></i>';
                                     }
@@ -85,7 +92,19 @@ font{
                                     echo "<h6 id='description'><b>Description:</b> $description</h6>";
                                     echo "<h6 id='store'><b>Store:</b> <a href='shopfeed.php?id=$storeid' style='color: blue;'>$storename</a></h6>";
                                     echo "</div>";
-
+                                    echo '<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <img src="'.$image.'" style="width: 100%;">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                                    
                               ?>
                         
                         </div>

@@ -35,7 +35,7 @@ if(isset($_POST['storeName']) && isset($_POST['fpage']) && isset($_POST['contact
         // Now you can use $target_file as the file path to store in your database or perform other operations
     }
 
-    $sql = "INSERT INTO `store` (`OwnerID`, `StoreName`, `ContactNo`, `Facebook`, `Latitude`, `Longitude`, `Location`, `StoreLocation`) VALUES ('$ownerid', '$storeName', '$contact', '$page', '$lat', '$lng', '$target_file', '$storeLocation')";
+    $sql = "INSERT INTO `request` (`OwnerID`, `StoreName`, `ContactNo`, `Facebook`, `Latitude`, `Longitude`, `Location`, `StoreLocation`, `Type`) VALUES ('$ownerid', '$storeName', '$contact', '$page', '$lat', '$lng', '$target_file', '$storeLocation', 'Shop Registration')";
     $result = mysqli_query($conn, $sql);
     if($result){
         echo "1";
