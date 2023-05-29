@@ -12,18 +12,21 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_array($result);
         $request_id = $row['ID'];
-                                    $store_name = $row['StoreName'];
-                                    $location = $row['Location'];
-                                    $owner = $row['OwnerID'];
-                                    $longitude = $row['Longitude'];
-                                    $latitude = $row['Latitude'];
-                                    $facebook = $row['Facebook'];
-                                    $contact = $row['ContactNo'];
+        $store_name = $row['StoreName'];
+        $location = $row['Location'];
+        $owner = $row['OwnerID'];
+        $longitude = $row['Longitude'];
+        $latitude = $row['Latitude'];
+        $facebook = $row['Facebook'];
+        $contact = $row['ContactNo'];
                                 
-                                    $store_location = $row['StoreLocation'];
+        $store_location = $row['StoreLocation'];
 
-        $sql = "INSERT INTO store (OwnerID, StoreName, Location, StoreLocation, Facebook, ContactNo, Longitude, Latitude) VALUES ('$owner', '$store_name', '$location', '$store_location', '$facebook', '$contact', '$longitude', '$latitude')";
+        $escaped_store_name = mysqli_real_escape_string($conn, $store_name);
+        $sql = "INSERT INTO store (OwnerID, StoreName, Location, StoreLocation, Facebook, ContactNo, Longitude, Latitude) VALUES ('$owner', '$escaped_store_name', '$location', '$store_location', '$facebook', '$contact', '$longitude', '$latitude')";
         $result = mysqli_query($conn, $sql);
+
+                                    
         $sql = "DELETE FROM request WHERE ID = $id";
         $result = mysqli_query($conn, $sql);
         header("Location: request.php");

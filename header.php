@@ -2,6 +2,7 @@
 
 include 'connection.php';
 $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
+$adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
@@ -24,7 +25,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 <a href="settings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a>
                                 </div>';
                         }
-                        else if($_SESSION['admin'])
+                        else if($adminLogin>0)
                         {
                             echo '<div class="col-md-2 col-sm-6">
                                 <a href="adminSettings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a>
@@ -77,7 +78,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 {
                                     echo '<li><a class="dropdown-item" href="logoutpro.php">Sign out</a></li>';
                                 }
-                                else if($_SESSION['admin'])
+                                else if($adminLogin>0)
                                 {
                                     echo '<li><a class="dropdown-item" href="logoutpro.php">Sign out</a></li>';
                                 }
@@ -125,7 +126,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                         echo "<li><a class='dropdown-item' href='shopreg.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a></li>";
                                     }
                                 }
-                                else if($_SESSION['admin'])
+                                else if($adminLogin>0)
                                 {
                                     echo "<li><a class='dropdown-item' href='manage.php'>Manage Site</a></li>";
                                 }
@@ -163,7 +164,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 {
                                     echo '<a href="settings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a><br>';
                                 }
-                                else if($_SESSION['admin'])
+                                else if($adminLogin>0)
                                 {
                                     echo '<a href="adminSettings.php"><h6 class="btn p-0" style="color: black;">Settings</h6></a><br>';
                                 }
@@ -205,7 +206,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                 {
                                     echo '<a href="logoutpro.php"><h6 class="btn p-0" style="color: black;">Sign out</h6></a>';
                                 }
-                                else if($_SESSION['admin'])
+                                else if($adminLogin>0)
                                 {
                                     echo '<a href="logoutpro.php"><h6 class="btn p-0" style="color: black;">Sign out</h6></a>';
                                 }
@@ -249,7 +250,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
                                     }
                                     
                                 }
-                                else if($_SESSION['admin'])
+                                else if($adminLogin>0)
                                 {
                                     echo "<a href='manage.php'><h6 class='btn p-0' style='color: black;'>Manage Site</h6></a>";
                                 }

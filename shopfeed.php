@@ -501,7 +501,7 @@ function editAddress(sid) {
 
 
 
-function editFacebook() {
+function editFacebook(sid) {
   console.log("Hey");
   Swal.fire({
     title: 'Edit Facebook Page',
