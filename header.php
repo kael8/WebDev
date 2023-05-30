@@ -258,6 +258,14 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
                                 {
                                     echo "<a href='login.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a>";
                                 }
+
+
+
+                                $id=NULL;
+                                $sid=NULL;
+                                $rid=NULL;
+                                $storeid=NULL;
+                                
                               ?>
                                 
                             
