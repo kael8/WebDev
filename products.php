@@ -12,7 +12,7 @@ session_start();
     </head>
     <style>
         .td:hover {
-    transform: scale(1.05);
+            transform: scale(1.03);
     transition-duration: 0.3s;
 
   }
@@ -59,11 +59,24 @@ font{
                                                                     
                             </div>
                            <div class="col-md-9 col-sm-12 p-0  border-start border-secondary-subtle border-1" >
-                                <h6 class = "p-3">Products</h6>
+                                
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class = "p-3">Products</h6>
+                                    </div>
+                                    <div class="col d-flex justify-content-end align-items-center" style="padding-right: 30px;">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <input type="text" name="query" class="form-control mr-sm-2" id="search" placeholder="Search..." />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="p-3  border-top border-secondary-subtle border-1">
                                     
                                 <div class="container">
-                                          <div class="row">                             
+                                          <div class="row" id = "box">                             
                                     <?php
 
                                     if(isset($_GET['cat']))
@@ -94,7 +107,7 @@ font{
                                         foreach($results as $rows) {
      
                                           echo '
-                                          <div class="col-md-3 col-sm-12 td">
+                                          <div class="col-md-3 col-sm-6 td p-0" style = "background-color: white; border: 5px solid #eeecee;">
                                           <div class="thumbnail">
                                           <center>';
                                                 // Check if there is a result for the current column
@@ -142,4 +155,25 @@ font{
 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://kit.fontawesome.com/4f2d05d9c9.js" crossorigin="anonymous"></script>
+
+
+<script>
+    $('#search').on("input", function(){
+        var query = $(this).val();
+        var cat = '<?php echo $_GET['cat'];?>';
+        
+        console.log(cat);
+        console.log(query);
+            $.ajax({
+            url: "searchCat.php",
+            method: "POST",
+            data: {query:query, cat:cat},
+            success:function(data){
+                $('#box').html(data);
+            }
+        });
+        
+        
+        
+    });
+</script>

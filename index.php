@@ -29,7 +29,7 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
 
     
   .td:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
     transition-duration: 0.3s;
 
   }
@@ -51,11 +51,28 @@ font{
             <div class = "row p-4">
               <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; width: 100%;">
                 
-                    <div class="o-hidden border-0 shadow-lg col-lg-12 text-light p-3" style="color: white;border-radius: 20px;">
-                        <div class="row">
+                    <div class="o-hidden border-0 shadow-lg col-lg-12 text-light p-4" style="color: white;border-radius: 20px;">
+                    <div class="row text-dark">
+                      <div class="col">
+                        <h3>Products</h3>
+                      </div>
+                      <div class="col d-flex justify-content-end">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" name="query" class="form-control mr-sm-2" id = "search" placeholder="Search..." />
+                                </div>
+                                    
+                            </div>
+
+                        </div>
+                    </div>
+                        <hr class="text-dark">
+                      
+                    <div class="row">
+                          
                             <div class="col">
                             <div class="container">
-                <div class="row">
+                <div class="row" id="box">
                     
                                 <?php
   // Assuming $results is an array of data to be displayed in the table
@@ -137,3 +154,18 @@ font{
 <script src="assets/js/custom.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://kit.fontawesome.com/4f2d05d9c9.js" crossorigin="anonymous"></script>
+
+<script>
+    $('#search').on("input", function(){
+        var query = $(this).val();
+        console.log(query);
+        $.ajax({
+            url: "searchIndex.php",
+            method: "POST",
+            data: {query:query},
+            success:function(data){
+                $('#box').html(data);
+            }
+        });
+    });
+</script>

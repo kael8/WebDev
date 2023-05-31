@@ -1,4 +1,13 @@
+<?php
+session_start();
+$hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
 
+    if($hasLogin)
+    {
+      
+      $_SESSION['id'] = $_SESSION['account'];
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>

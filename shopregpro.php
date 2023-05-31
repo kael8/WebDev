@@ -8,7 +8,7 @@ if(isset($_POST['storeName']) && isset($_POST['fpage']) && isset($_POST['contact
     $contact = $_POST['contact'];
     $lat = $_POST['lat'];
     $lng = $_POST['lng'];
-    $ownerid = $_SESSION['id'];
+    $ownerid = $_SESSION['account'];
     $storeLocation = $_POST['displayName'];
 
     // Sanitize input data
@@ -34,15 +34,16 @@ if(isset($_POST['storeName']) && isset($_POST['fpage']) && isset($_POST['contact
         move_uploaded_file($image_tmp_name, $target_file);
         // Now you can use $target_file as the file path to store in your database or perform other operations
     }
-
+    $target_file = mysqli_real_escape_string($conn, $target_file);
     $sql = "INSERT INTO `request` (`OwnerID`, `StoreName`, `ContactNo`, `Facebook`, `Latitude`, `Longitude`, `Location`, `StoreLocation`, `Type`) VALUES ('$ownerid', '$storeName', '$contact', '$page', '$lat', '$lng', '$target_file', '$storeLocation', 'Shop Registration')";
     $result = mysqli_query($conn, $sql);
-    if($result){
-        echo "1";
-    }
-    else{
-        echo "2";
-    }
+if ($result) {
+    echo "1";
+} else {
+    echo "2";
+    echo "Error: " . mysqli_error($conn);
+}
+
 }
 else{
     echo $_POST['storeName'] . $_POST['page'] . $_POST['no.'] . $_POST['lat'] . $_POST['lng'];

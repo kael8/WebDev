@@ -3,7 +3,18 @@
 include 'connection.php';
 $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
 $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
+
+$sql = "SELECT * FROM category LIMIT 1";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$categories = $row['CategoryName'];
 ?>
+<style>
+    .dropdown.text-end .dropdown-toggle:hover {
+        background-color: transparent;
+        /* Add any other specific styling you want for the hover state here */
+    }
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 <div style="width: 100%;background-color: #eeecee;" class="border-bottom border-primary-subtle border-4">
@@ -16,7 +27,7 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
                         <a href="index.php"><h6 class="btn p-0" style="color: black;">Home</h6></a>
                     </div>
                     <div class="col-md-2 col-sm-6">
-                        <a href="products.php"><h6 class="btn p-0" style="color: black;">Products</h6></a>
+                        <a href="products.php?cat=<?php echo $categories;?>"><h6 class="btn p-0" style="color: black;">Products</h6></a>
                     </div>
                     <?php
                         if($hasLogin)
@@ -40,7 +51,7 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
                     </div>
                     
                     <div class="col-md-2 col-sm-6" style="text-align: left;">
-                        <div class="dropdown text-end">
+                        <div class = "text-end">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                               <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle light">
                             </a>
@@ -258,14 +269,6 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
                                 {
                                     echo "<a href='login.php'><h6 class='btn p-0' style='color: black;'>Add Store</h6></a>";
                                 }
-
-
-
-                                $id=NULL;
-                                $sid=NULL;
-                                $rid=NULL;
-                                $storeid=NULL;
-                                
                               ?>
                                 
                             

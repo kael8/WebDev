@@ -104,7 +104,7 @@ font{
                                                 <option value="none" disabled>Select Category</option>
                                             <?php
                                             // Connect to your database and fetch category data
-                                            $sql = "SELECT * FROM Category";
+                                            $sql = "SELECT * FROM category";
                                             $results = mysqli_query($conn, $sql);
                                            
                                             

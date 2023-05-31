@@ -19,6 +19,13 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </head>
+<style>
+    .table-container {
+
+    overflow: auto;
+}
+
+</style>
     
 
     <body style="background: #eeecee;">
@@ -29,12 +36,22 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
             <div class = "row p-3  o-hidden shadow-lg" style="border-radius: 20px;">
                 <div class="col-lg-12 text-dark">
                     <div class="row ">
-                        <h1>Manage Store</h1>
-                        
+                        <div class="col">
+                            <h1>Manage Store</h1>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" name="query" class="form-control mr-sm-2" id = "search" placeholder="Search..." />
+                                </div>
+                                    
+                            </div>
+
+                        </div>
                     </div>
                     <hr>
-                    <div class="row" >
-                        <table class = "table table-striped  table-rounded" style = "border-collapse: separate; border-spacing: 0 10px; border-radius: 10px;">
+                    <div class="row table-container " id = "box">
+                        <table class = "table   table-rounded" style = "border-collapse: separate; border-spacing: 0 10px; border-radius: 10px;">
                             <tr>
                                 <th>ID</th>
                                 <th>Store Name</th>
@@ -72,6 +89,7 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
                                     }
                                 } 
                             ?>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -92,3 +110,17 @@ $adminLogin = (isset($_SESSION['admin'])?$_SESSION['admin']:0);
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://kit.fontawesome.com/4f2d05d9c9.js" crossorigin="anonymous"></script>
 
+<script>
+    $('#search').on("input", function(){
+        var query = $(this).val();
+        console.log(query);
+        $.ajax({
+            url: "searchStore.php",
+            method: "POST",
+            data: {query:query},
+            success:function(data){
+                $('#box').html(data);
+            }
+        });
+    });
+</script>

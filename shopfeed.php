@@ -35,7 +35,14 @@ $hasLogin = (isset($_SESSION['account'])?$_SESSION['account']:0);
     
     <style>
 
-    
+.td:hover {
+  transform: scale(1.03);
+    transition-duration: 0.3s;
+   
+  }
+  .td {
+  transition: transform 0.3s;
+}
   td:hover {
     transform: scale(1.05);
     transition-duration: 0.3s;
@@ -162,7 +169,7 @@ font{
     
     foreach($results as $rows) {
      
-      echo '<div class="col-md-3 col-sm-6 td">
+      echo '<div class="col-md-3 col-sm-6 td p-0" style = "background-color: white; border: 5px solid #eeecee;">
       <div class="thumbnail">
       <center>';
             // Check if there is a result for the current column
